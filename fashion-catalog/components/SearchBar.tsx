@@ -3,6 +3,17 @@
 import { useState, useEffect, useRef } from 'react';
 import brandsData from '@/data/brands.json';
 
+interface Brand {
+  id: number;
+  name: string;
+  description: string;
+  category: string;
+  image: string;
+  website: string;
+  colors: string[];
+  priceRange: string;
+}
+
 interface SearchBarProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;
@@ -18,7 +29,7 @@ export default function SearchBar({ searchTerm, onSearchChange }: SearchBarProps
       // Get all unique searchable terms
       const allTerms = new Set<string>();
       
-      brandsData.forEach((brand: any) => {
+      brandsData.forEach((brand: Brand) => {
         // Add brand name
         allTerms.add(brand.name);
         
